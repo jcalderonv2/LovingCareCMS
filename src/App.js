@@ -1,64 +1,63 @@
 import './App.css';
 import React, { Component } from 'react';
-import firebase from './Components/Firebase/firebaseConfig';
+import firebase from './Components/Firebase/firebaseConfig'
+import Login from './Components/Login/Login.js'
+import Home from './Components/Home/Home.js'
+
 
 class App extends Component {
-  constructor() {
-    super();
+
+  constructor(props) {
+
+    super(props);
+
     this.state = {
-      currentItem: '',
-      username: ''
+
+      user: {}
+
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  componentDidMount() {
+
+    this.authListener();
+
   }
-  
-  handleSubmit(e) {
-    e.preventDefault();
-    const itemsRef = firebase.database().ref('items');
-    const item = {
-      title: this.state.currentItem,
-      user: this.state.username
-    }
-    itemsRef.push(item);
-    this.setState({
-      currentItem: '',
-      username: ''
-    });
+
+  authListener() {
+
+    firebase.auth().onAuthStateChanged((user) => {
+
+      if (user) {
+
+        this.setState({ user })
+
+      }
+
+      else {
+
+        this.setState({ user: null })
+
+      }
+
+    })
+
   }
+
   render() {
-    return (
-      <div className='app'>
-        <header>
-          <div className='wrapper'>
-            <h1>Fun Food Friends</h1>
-          </div>
-        </header>
-        <div className='container'>
-          <section className="add-item">
-            <form onSubmit={this.handleSubmit}>
-              <input type="text" name="username" placeholder="What's your name?" onChange={this.handleChange} value={this.state.username} />
-              <input type="text" name="currentItem" placeholder="What are you bringing ?" onChange={this.handleChange} value={this.state.currentItem} />
-              <button>Add Item</button>
-            </form>
-          </section>
-          <section className='display-item'>
-            <div className='wrapper'>
-              <ul>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </div>
-    );
-  }
-}
-export default App;
 
- 
+    return (
+
+      (this.state.user ? (<Home />) : (<Login />))
+
+    )
+
+  }
+
+}
+
+export default App
+
+
+

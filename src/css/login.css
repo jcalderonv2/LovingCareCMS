@@ -1,0 +1,89 @@
+.createAccount Button {
+    background-color: #207e9e;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 0px;
+    margin-bottom: 5%;
+    margin-top: 3%;
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+
+  .createAccount Button:hover {
+    color: #fff;
+    background-color: #0f6380;
+    border: 2px solid #fff;
+     cursor: pointer;
+     font-family: 'Montserrat', sans-serif;
+  
+  }
+
+  .createAccount a{
+
+    color: #207e9e;
+    text-decoration: none;
+  }
+  
+  label {
+    font-size: 0.9em;
+    margin-bottom: 0.25em;
+    color: #222;
+    font-weight: lighter;
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+  
+  input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+  
+  input::placeholder {
+    font-size: 12px;
+    font-weight: lighter;
+    color: rgba(153, 153, 153, 0.521);
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+  
+  input.error {
+    border: 1px solid red;
+  }
+  
+  .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+
+  #img img{
+    width: 250px;
+    margin-top: 20%;
+    margin-left: 18%;
+  }
+  
+  .email,
+  .password {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .secc{
+  margin-top: 45px; 
+}
+  
+  .secp{
+    margin-top: 10px; 
+}
+
+label{
+    color: #999999;
+}
