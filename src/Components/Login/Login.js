@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import img from './../../img/logo.png';
 import './../../css/login.css';
 import firebase from './../../Components/Firebase/firebaseConfig';
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -62,6 +63,12 @@ class Login extends Component {
 
             console.log(err)
 
+            Swal.fire({
+                icon: 'error',
+                text: 'Datos inválidos, inténtelo de nuevo.',
+                confirmButtonText: 'Aceptar',
+            })
+
         })
 
     }
@@ -82,13 +89,13 @@ class Login extends Component {
 
     }
 
-    
 
-    handleChange(e){
+
+    handleChange(e) {
 
         this.setState({
 
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
 
         })
 
