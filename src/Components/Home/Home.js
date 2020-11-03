@@ -1,31 +1,19 @@
 import React, { Component } from 'react';
-import firebase from './../../Components/Firebase/firebaseConfig';
+import './../../css/sb-admin-2.min.css';
+import './../../css/menu.css';
+import Sidebar from '../Sidebar/Sidebar';
+
+
 
 class Home extends Component {
-
-    constructor(props) {
-
-        super(props);
-        this.state = {
-
-        }
-
-    }
-
-    logout(){
-
-        firebase.auth().signOut();
-
-    }
 
     render() {
 
         return (
 
-            <div>
+            <div id="wrapper">
 
-                <h1>Bienvenido</h1>
-                <button onClick={this.logout}>Cerrar</button>
+                <Sidebar />
 
             </div>
 

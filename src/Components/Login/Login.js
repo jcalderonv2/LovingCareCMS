@@ -8,6 +8,7 @@ import img from './../../img/logo.png';
 import './../../css/login.css';
 import firebase from './../../Components/Firebase/firebaseConfig';
 import Swal from 'sweetalert2'
+import $ from 'jquery'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -38,7 +39,6 @@ class Login extends Component {
 
         super(props);
         this.login = this.login.bind(this);
-        this.crear = this.crear.bind(this);
 
         this.handleChange = this.handleChange.bind(this);
 
@@ -65,7 +65,8 @@ class Login extends Component {
 
             Swal.fire({
                 icon: 'error',
-                text: 'Datos inválidos, inténtelo de nuevo.',
+                title: 'Datos inválidos',
+                text: 'Los datos ingresados son inválidos, inténtelo de nuevo.',
                 confirmButtonText: 'Aceptar',
             })
 
@@ -73,7 +74,7 @@ class Login extends Component {
 
     }
 
-    crear(e) {
+    create(e) {
 
         e.preventDefault();
 
@@ -84,7 +85,7 @@ class Login extends Component {
         }).catch((err) => {
 
             console.log(err)
-
+           
         })
 
     }
@@ -111,7 +112,7 @@ class Login extends Component {
 
                 <div className="mainDiv" id="contStyle">
 
-                    <div id="img">
+                    <div id="imgLogin">
 
                         <img src={img} alt="description"></img>
 
@@ -153,8 +154,7 @@ class Login extends Component {
 
                         <div className="createAccount">
 
-                            <Button onClick={this.login} fullWidth> Ingresar </Button>
-                            <Button onClick={this.crear} fullWidth> Crear </Button>
+                            <Button onClick={this.login} fullWidth id="errortxt"> Ingresar </Button>
 
                         </div>
 

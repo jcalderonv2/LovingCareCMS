@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import firebase from './Components/Firebase/firebaseConfig'
 import Login from './Components/Login/Login.js'
 import Home from './Components/Home/Home.js'
+import './Components/Icons/FontAwesome'
+
 
 
 class App extends Component {
@@ -49,6 +51,7 @@ class App extends Component {
 
     return (
 
+      
       (this.state.user ? (<Home />) : (<Login />))
 
     )

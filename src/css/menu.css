@@ -1,0 +1,22 @@
+.iconSpace {
+    padding-right: 2%;
+}
+
+#img img {
+    width: 150px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 18%;
+}
+
+.menuColor{
+
+    background-color: rgb(0, 0, 0);
+}
+
+.options a:hover {
+    color: #0f6380;
+     cursor: pointer;
+  
+  }
+
