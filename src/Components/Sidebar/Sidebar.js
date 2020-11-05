@@ -117,12 +117,12 @@ class Sidebar extends Component {
                             <span>Perfíl</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a role="button" class="nav-link collapsed" onClick={this.logout} >
+                    <li class="nav-item logout">
+                        <button class="nav-link collapsed" onClick={this.logout} >
                             <FontAwesomeIcon icon={['fas', 'sign-out-alt']} className="iconSpace options" />
 
                             <span>Cerrar sesión</span>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>

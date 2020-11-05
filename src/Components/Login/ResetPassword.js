@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import img from './../../img/logo.png';
 import './../../css/login.css';
 import firebase from './../../Components/Firebase/firebaseConfig';
 import Swal from 'sweetalert2'
+import {withRouter} from 'react-router-dom';
+
+firebase.auth().languageCode = 'es_419';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -32,32 +34,38 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-class Login extends Component {
+class ResetPassword extends Component {
 
     constructor(props) {
 
         super(props);
-        this.login = this.login.bind(this);
+        this.reset = this.reset.bind(this);
 
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
 
-            email: "",
-            password: ""
+            email: ""
 
         }
 
     }
 
-    login(e) {
+    reset(e) {
 
         e.preventDefault();
 
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        firebase.auth().sendPasswordResetEmail(this.state.email).then((u) => {
 
             console.log(u)
-            sessionStorage.setItem('email', this.state.email);
+            Swal.fire({
+                icon: 'success',
+                title: 'Revisar correo electrónico',
+                text: 'Por favor ingrese a su correo electrónico para realizar el cambio de contraseña.',
+                confirmButtonText: 'Aceptar',
+            }).then(
+                this.props.history.push('/')
+            )
 
         }).catch((err) => {
 
@@ -70,21 +78,6 @@ class Login extends Component {
                 confirmButtonText: 'Aceptar',
             })
 
-        })
-    }
-
-    create(e) {
-
-        e.preventDefault();
-
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
-
-            console.log(u)
-
-        }).catch((err) => {
-
-            console.log(err)
-           
         })
     }
 
@@ -107,9 +100,16 @@ class Login extends Component {
 
                 <div className="mainDiv" id="contStyle">
 
-                    <div id="imgLogin">
+                    <div id="imgLogin" >
 
                         <img src={img} alt="description"></img>
+
+                    </div>
+
+                    <div className="info">
+
+                        <h4>Recuperar contraseña</h4>
+                        <p className="pColor">Ingrese el correo electrónico asociado a su cuenta</p>
 
                     </div>
 
@@ -131,45 +131,14 @@ class Login extends Component {
 
                         </div>
 
-                        <div className="password secp">
-
-                            <label htmlFor="password">Contraseña</label>
-
-                            <input
-                                placeholder="Contraseña"
-                                type="password"
-                                id="password"
-                                name="password"
-                                noValidate
-                                onChange={this.handleChange}
-                                value={this.state.password}
-                            />
-
-                        </div>
-
                         <div className="createAccount">
 
-                            <Button onClick={this.login} fullWidth id="errortxt"> Ingresar </Button>
+                            <Button onClick={this.reset} fullWidth> Confirmar </Button>
 
                         </div>
 
-                        <div className="createAccount">
+                        <Button onClick={() => this.props.history.push('/') } fullWidth id="btnCancel"> Cancelar </Button>
 
-                            <Grid container>
-
-                                <Grid item xs>
-
-                                    <a href="/ResetPassword" variant="body2">
-
-                                        ¿Olvidó su contraseña?
-
-                                    </a>
-
-                                </Grid>
-
-                            </Grid>
-
-                        </div>
 
                     </form>
 
@@ -181,4 +150,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(ResetPassword);
